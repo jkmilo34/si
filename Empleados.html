@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHIPAE - Empleados</title>
+    <link rel="stylesheet" href="style-empleados.css">
+</head>
+<body>
+    <!-- Barra Superior (Navbar) -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- Logo -->
+            <div class="navbar-logo">
+                <h1>CHIPAE</h1>
+            </div>
+
+            <!-- Menú Central -->
+            <ul class="nav-menu">
+                <li><a href="#colegios" class="nav-link">Colegios</a></li>
+                <li><a href="#estadisticas" class="nav-link">Estadísticas</a></li>
+                <li><a href="#reportes" class="nav-link">Reportes</a></li>
+            </ul>
+
+            <!-- Perfil del Empleado -->
+            <div class="profile-section">
+                <div class="profile-dropdown">
+                    <button class="profile-btn">
+                        <div class="profile-avatar">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="50" fill="#5a3a6a"/>
+                                <circle cx="50" cy="35" r="15" fill="#e0e0e0"/>
+                                <path d="M 30 65 Q 30 50 50 50 Q 70 50 70 65 L 70 85 Q 70 85 50 85 Q 30 85 30 65" fill="#e0e0e0"/>
+                            </svg>
+                        </div>
+                        <span class="profile-name" id="profileName">Empleado</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </button>
+
+                    <!-- Menú Desplegable del Perfil -->
+                    <div class="dropdown-menu">
+                        <a href="#mi-perfil" class="dropdown-item">👤 Mi Perfil</a>
+                        <a href="#configuracion" class="dropdown-item">⚙️ Configuración</a>
+                        <a href="#ayuda" class="dropdown-item">❓ Ayuda</a>
+                        <hr class="dropdown-divider">
+                        <a href="login.html" class="dropdown-item logout">🚪 Cerrar Sesión</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenedor Principal -->
+    <div class="main-container">
+        <!-- Bienvenida -->
+        <section class="welcome-section">
+            <h2>Bienvenido, <span id="welcomeName">Empleado</span></h2>
+            <p>Sistema de Gestión - Programa de Alimentación Escolar</p>
+        </section>
+
+        <!-- Sección de Colegios -->
+        <section id="colegios" class="colegios-section">
+            <div class="section-header">
+                <h3>🏫 Colegios Asignados</h3>
+                <button class="btn-add" onclick="addColegio()">+ Agregar Colegio</button>
+            </div>
+
+            <div class="colegios-grid">
+                <!-- Tarjeta Colegio Ejemplo 1 -->
+                <div class="colegio-card">
+                    <div class="card-header">
+                        <h4>Colegio Principal</h4>
+                        <span class="status active">Activo</span>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Código:</strong> COL-001</p>
+                        <p><strong>Ubicación:</strong> Calle Principal, 123</p>
+                        <p><strong>Estudiantes:</strong> 450</p>
+                        <p><strong>Jornadas:</strong> Mañana, Tarde</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn-small btn-view" onclick="viewColegio(1)">Ver</button>
+                        <button class="btn-small btn-edit" onclick="editColegio(1)">Editar</button>
+                        <button class="btn-small btn-delete" onclick="deleteColegio(1)">Eliminar</button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Colegio Ejemplo 2 -->
+                <div class="colegio-card">
+                    <div class="card-header">
+                        <h4>Colegio Secundario</h4>
+                        <span class="status active">Activo</span>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Código:</strong> COL-002</p>
+                        <p><strong>Ubicación:</strong> Avenida Central, 456</p>
+                        <p><strong>Estudiantes:</strong> 320</p>
+                        <p><strong>Jornadas:</strong> Mañana</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn-small btn-view" onclick="viewColegio(2)">Ver</button>
+                        <button class="btn-small btn-edit" onclick="editColegio(2)">Editar</button>
+                        <button class="btn-small btn-delete" onclick="deleteColegio(2)">Eliminar</button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Colegio Ejemplo 3 -->
+                <div class="colegio-card">
+                    <div class="card-header">
+                        <h4>Colegio Técnico</h4>
+                        <span class="status inactive">Inactivo</span>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Código:</strong> COL-003</p>
+                        <p><strong>Ubicación:</strong> Zona Industrial, 789</p>
+                        <p><strong>Estudiantes:</strong> 200</p>
+                        <p><strong>Jornadas:</strong> Tarde</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn-small btn-view" onclick="viewColegio(3)">Ver</button>
+                        <button class="btn-small btn-edit" onclick="editColegio(3)">Editar</button>
+                        <button class="btn-small btn-delete" onclick="deleteColegio(3)">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Estadísticas -->
+        <section id="estadisticas" class="estadisticas-section">
+            <h3>📊 Estadísticas Rápidas</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">450</div>
+                    <div class="stat-label">Total Estudiantes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Colegios Asignados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1,200</div>
+                    <div class="stat-label">Raciones Distribuidas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Cobertura</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal para agregar colegio (opcional) -->
+    <div id="colegioModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Agregar Nuevo Colegio</h2>
+            <form id="colegioForm">
+                <div class="form-group">
+                    <label for="colegioNombre">Nombre del Colegio:</label>
+                    <input type="text" id="colegioNombre" placeholder="Ingrese el nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="colegioCodig">Código:</label>
+                    <input type="text" id="colegioCodig" placeholder="COL-XXX" required>
+                </div>
+                <div class="form-group">
+                    <label for="colegioUbicacion">Ubicación:</label>
+                    <input type="text" id="colegioUbicacion" placeholder="Dirección del colegio" required>
+                </div>
+                <div class="form-group">
+                    <label for="colegioEstudiantes">Número de Estudiantes:</label>
+                    <input type="number" id="colegioEstudiantes" placeholder="0" required>
+                </div>
+                <button type="submit" class="btn-submit">Guardar Colegio</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script-empleados.js"></script>
+</body>
+</html>

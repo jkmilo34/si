@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHIPAE - Registro</title>
+    <link rel="stylesheet" href="style-registro.css">
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-box">
+            <!-- Avatar -->
+            <div class="avatar">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="50" fill="#5a3a6a"/>
+                    <circle cx="50" cy="35" r="15" fill="#e0e0e0"/>
+                    <path d="M 30 65 Q 30 50 50 50 Q 70 50 70 65 L 70 85 Q 70 85 50 85 Q 30 85 30 65" fill="#e0e0e0"/>
+                </svg>
+            </div>
+
+            <h2 class="register-title">CHIPAE - Registro</h2>
+
+            <!-- Formulario -->
+            <form id="registerForm">
+                <!-- Usuario -->
+                <div class="input-group">
+                    <span class="icon">👤</span>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        placeholder="Usuario" 
+                        required
+                    >
+                </div>
+
+                <!-- Correo Electrónico -->
+                <div class="input-group">
+                    <span class="icon">📧</span>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        placeholder="Correo Electrónico" 
+                        required
+                    >
+                </div>
+
+                <!-- Contraseña -->
+                <div class="input-group">
+                    <span class="icon">🔒</span>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="Contraseña" 
+                        required
+                    >
+                </div>
+
+                <!-- Confirmar Contraseña -->
+                <div class="input-group">
+                    <span class="icon">🔒</span>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        placeholder="Confirmar Contraseña" 
+                        required
+                    >
+                </div>
+
+                <!-- Términos y condiciones -->
+                <div class="terms">
+                    <label>
+                        <input type="checkbox" id="acceptTerms" required>
+                        <span>Acepto los términos y condiciones</span>
+                    </label>
+                </div>
+
+                <!-- Botón Registro -->
+                <button type="submit" class="register-btn">REGISTRARSE</button>
+            </form>
+
+            <!-- Enlace a Login -->
+            <div class="login-link">
+                <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+            </div>
+
+            <!-- Volver al inicio -->
+            <div class="back-link">
+                <a href="otro.html">← Volver al inicio</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script-registro.js"></script>
+</body>
+</html>

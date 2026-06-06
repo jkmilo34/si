@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHIPAE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4a1a5c 0%, #2d0f3a 100%);
+            padding: 30px 0;
+            text-align: center;
+            border-bottom: 4px solid #d4a574;
+        }
+
+        header h1 {
+            font-size: 3em;
+            letter-spacing: 3px;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(212, 165, 116, 0.5);
+        }
+
+        nav {
+            background-color: #3d1a47;
+            border-bottom: 2px solid #d4a574;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            display: block;
+            color: #ffd700;
+            text-decoration: none;
+            padding: 15px 30px;
+            transition: all 0.3s ease;
+            border-right: 1px solid #5a2a66;
+            cursor: pointer;
+        }
+
+        nav ul li:last-child a {
+            border-right: none;
+        }
+
+        nav ul li a:hover {
+            background-color: #5a2a66;
+            color: #ffed4e;
+            text-shadow: 0 0 10px rgba(212, 165, 116, 0.7);
+        }
+
+        main {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #1a1a1a;
+        }
+
+        main h2 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-shadow: 0 0 5px rgba(212, 165, 116, 0.3);
+        }
+
+        main p {
+            color: #c0c0c0;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #4a1a5c 0%, #2d0f3a 100%);
+            color: #ffd700;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            border-top: 2px solid #d4a574;
+        }
+
+        section {
+            padding: 20px;
+            background-color: #2a2a2a;
+            border-left: 4px solid #d4a574;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li a {
+                text-align: center;
+                border-right: none;
+                border-bottom: 1px solid #5a2a66;
+            }
+
+            nav ul li:last-child a {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CHIPAE</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="registro.html">Registro</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="inicio">
+            <h2>Bienvenido a CHIPAE</h2>
+            <p>Chipae es un programa para poder ayudar a las personas del PAE (programa de alimentacion escolar) a tener un registro de los almuerzos.</p>
+        </section>
+
+        <section id="nosotros">
+            <h2>Nosotros</h2>
+            <p>esta es una pagina de recolecion de datos de los almuerzos.</p>
+        </section>
+
+        <section id="login">
+            <h2>Login</h2>
+            <p>Acceso a tu cuenta.</p>
+        </section>
+
+        <section id="registro">
+            <h2>Registro</h2>
+            <p>Crea una nueva cuenta.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CHIPAE. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetSection = document.querySelector(href);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+                // Links that don't start with '#' (like login.html) will navigate normally
+            });
+        });
+
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 0) {
+                header.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        console.log('Bienvenido a CHIPAE - Inspirado en EVA-01');
+    </script>
+</body>
+
+</html>
