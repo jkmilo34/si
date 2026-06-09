@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHIPAE - Registro</title>
-    <link rel="stylesheet" href="style-registro.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <div class="register-container">
-        <div class="register-box">
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-box">
             <!-- Avatar -->
             <div class="avatar">
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -18,52 +18,33 @@
                 </svg>
             </div>
 
-            <h2 class="register-title">CHIPAE - Registro</h2>
+            <h2 class="auth-title">CHIPAE</h2>
+            <p class="auth-subtitle">Crea tu cuenta</p>
 
             <!-- Formulario -->
-            <form id="registerForm">
+            <form id="registerForm" class="auth-form">
                 <!-- Usuario -->
                 <div class="input-group">
                     <span class="icon">👤</span>
-                    <input 
-                        type="text" 
-                        id="username" 
-                        placeholder="Usuario" 
-                        required
-                    >
+                    <input type="text" id="username" placeholder="Usuario" minlength="3" required>
                 </div>
 
                 <!-- Correo Electrónico -->
                 <div class="input-group">
                     <span class="icon">📧</span>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        placeholder="Correo Electrónico" 
-                        required
-                    >
+                    <input type="email" id="email" placeholder="Correo Electrónico" required>
                 </div>
 
                 <!-- Contraseña -->
                 <div class="input-group">
                     <span class="icon">🔒</span>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        placeholder="Contraseña" 
-                        required
-                    >
+                    <input type="password" id="password" placeholder="Contraseña" minlength="6" required>
                 </div>
 
                 <!-- Confirmar Contraseña -->
                 <div class="input-group">
                     <span class="icon">🔒</span>
-                    <input 
-                        type="password" 
-                        id="confirmPassword" 
-                        placeholder="Confirmar Contraseña" 
-                        required
-                    >
+                    <input type="password" id="confirmPassword" placeholder="Confirmar Contraseña" minlength="6" required>
                 </div>
 
                 <!-- Términos y condiciones -->
@@ -75,21 +56,21 @@
                 </div>
 
                 <!-- Botón Registro -->
-                <button type="submit" class="register-btn">REGISTRARSE</button>
+                <button type="submit" class="btn btn-submit">REGISTRARSE</button>
             </form>
 
             <!-- Enlace a Login -->
-            <div class="login-link">
+            <div class="auth-link">
                 <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a></p>
             </div>
 
             <!-- Volver al inicio -->
             <div class="back-link">
-                <a href="otro.html">← Volver al inicio</a>
+                <a href="index.html">← Volver al inicio</a>
             </div>
         </div>
     </div>
 
-    <script src="script-registro.js"></script>
+    <script src="auth.js"></script>
 </body>
 </html>

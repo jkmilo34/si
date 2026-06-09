@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHIPAE - Login</title>
-    <link rel="stylesheet" href="style-login.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <div class="login-container">
-        <div class="login-box">
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-box">
             <!-- Avatar -->
             <div class="avatar">
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -18,30 +18,21 @@
                 </svg>
             </div>
 
-            <h2 class="login-title">CHIPAE</h2>
+            <h2 class="auth-title">CHIPAE</h2>
+            <p class="auth-subtitle">Inicia sesión en tu cuenta</p>
 
             <!-- Formulario -->
-            <form id="loginForm">
+            <form id="loginForm" class="auth-form">
                 <!-- Usuario -->
                 <div class="input-group">
                     <span class="icon">👤</span>
-                    <input 
-                        type="text" 
-                        id="username" 
-                        placeholder="Usuario" 
-                        required
-                    >
+                    <input type="text" id="username" placeholder="Usuario" required>
                 </div>
 
                 <!-- Contraseña -->
                 <div class="input-group">
                     <span class="icon">🔒</span>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        placeholder="Contraseña" 
-                        required
-                    >
+                    <input type="password" id="password" placeholder="Contraseña" required>
                 </div>
 
                 <!-- Recordarme y Olvide contraseña -->
@@ -50,25 +41,25 @@
                         <input type="checkbox" id="rememberMe">
                         <span>Recuérdame</span>
                     </label>
-                    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                    <a href="#" class="forgot-password" title="Próximamente">¿Olvidaste tu contraseña?</a>
                 </div>
 
                 <!-- Botón Login -->
-                <button type="submit" class="login-btn">INGRESAR</button>
+                <button type="submit" class="btn btn-submit">INGRESAR</button>
             </form>
 
             <!-- Enlace a Registro -->
-            <div class="signup-link">
+            <div class="auth-link">
                 <p>¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
             </div>
 
             <!-- Volver al inicio -->
             <div class="back-link">
-                <a href="otro.html">← Volver al inicio</a>
+                <a href="index.html">← Volver al inicio</a>
             </div>
         </div>
     </div>
 
-    <script src="script-login.js"></script>
+    <script src="auth.js"></script>
 </body>
 </html>

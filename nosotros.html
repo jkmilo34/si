@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHIPAE - Nosotros</title>
-    <link rel="stylesheet" href="style-nosotros.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <h1>CHIPAE</h1>
+        <p class="tagline">Sistema de Gestión del Programa de Alimentación Escolar</p>
     </header>
 
     <nav>
         <ul>
-            <li><a href="otro.html">Inicio</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="login.html">Login</a></li>
+            <li><a href="index.html" class="nav-link">Inicio</a></li>
+            <li><a href="nosotros.html" class="nav-link active">Nosotros</a></li>
+            <li><a href="login.html" class="nav-link">Login</a></li>
+            <li><a href="registro.html" class="nav-link">Registro</a></li>
         </ul>
     </nav>
 
@@ -32,10 +34,12 @@
 
         <section>
             <h2>Nuestros Objetivos</h2>
-            <p>• Crear un registro digital completo de los almuerzos servidos en las instituciones educativas</p>
-            <p>• Mejorar la eficiencia administrativa del PAE mediante tecnología moderna</p>
-            <p>• Garantizar la transparencia en la gestión de recursos alimentarios</p>
-            <p>• Facilitar el seguimiento y evaluación del programa a nivel nacional</p>
+            <ul class="objectives-list">
+                <li>Crear un registro digital completo de los almuerzos servidos en las instituciones educativas</li>
+                <li>Mejorar la eficiencia administrativa del PAE mediante tecnología moderna</li>
+                <li>Garantizar la transparencia en la gestión de recursos alimentarios</li>
+                <li>Facilitar el seguimiento y evaluación del programa a nivel nacional</li>
+            </ul>
         </section>
 
         <section>
@@ -44,14 +48,13 @@
         </section>
 
         <div class="back-link">
-            <a href="otro.html">← Volver al inicio</a>
+            <a href="index.html">← Volver al inicio</a>
         </div>
     </main>
 
     <footer>
         <p>&copy; 2026 CHIPAE. Todos los derechos reservados.</p>
+        <p class="footer-note">Sistema de gestión para educación superior</p>
     </footer>
-
-    <script src="script-nosotros.js"></script>
 </body>
 </html>
