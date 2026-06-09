@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHIPAE - Inicio</title>
+    <title>CHIPAE - Sistema de Gestión del Programa de Alimentación Escolar</title>
+    
     <style>
         /* ===== VARIABLES CSS Y RESET ===== */
         * {
@@ -61,6 +62,29 @@
             background-color: var(--bg-dark);
         }
 
+        body.auth-page {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-purple) 25%, var(--primary-accent) 50%, var(--secondary-accent) 75%, var(--primary-dark) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.auth-page::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            animation: pulse 8s ease-in-out infinite;
+            z-index: 0;
+        }
+
         /* ===== HEADER Y NAVEGACIÓN ===== */
         header {
             background: linear-gradient(135deg, var(--primary-accent) 0%, var(--primary-purple) 100%);
@@ -116,6 +140,7 @@
             transition: var(--transition);
             border-right: 1px solid var(--border-dark);
             position: relative;
+            cursor: pointer;
         }
 
         nav ul li:last-child a {
@@ -143,6 +168,11 @@
             margin-bottom: 30px;
             border-radius: 4px;
             animation: fadeInUp 0.5s ease;
+            display: none;
+        }
+
+        section.active {
+            display: block;
         }
 
         section h2 {
@@ -158,7 +188,7 @@
             margin-bottom: 15px;
         }
 
-        /* Sección hero --*/
+        /* Sección hero */
         .section-hero {
             text-align: center;
             background: linear-gradient(135deg, var(--primary-accent) 0%, var(--secondary-accent) 100%);
@@ -182,7 +212,7 @@
             flex-wrap: wrap;
         }
 
-        /* Sección features --*/
+        /* Sección features */
         .section-features {
             border-left: none;
             background-color: var(--bg-dark);
@@ -213,6 +243,186 @@
             color: var(--gold-bright);
             margin-bottom: 10px;
             font-size: 1.2em;
+        }
+
+        /* ===== PÁGINA DE AUTENTICACIÓN ===== */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .auth-box {
+            background: rgba(30, 10, 50, 0.9);
+            padding: 50px 40px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 0 30px rgba(212, 165, 116, 0.3), 0 0 60px rgba(74, 26, 92, 0.4), inset 0 0 30px rgba(212, 165, 116, 0.1);
+            border: 2px solid var(--gold);
+            backdrop-filter: blur(10px);
+            animation: slideInUp 0.5s ease;
+            display: none;
+        }
+
+        .auth-box.active {
+            display: block;
+        }
+
+        .auth-title {
+            text-align: center;
+            color: var(--gold-bright);
+            font-size: 1.8em;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(212, 165, 116, 0.5);
+        }
+
+        .auth-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+        /* ===== AVATAR ===== */
+        .avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #7a4a8a, #4a2a6a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(212, 165, 116, 0.4), inset 0 0 20px rgba(212, 165, 116, 0.2);
+            border: 3px solid var(--gold);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .avatar svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ===== FORMULARIOS ===== */
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-input);
+            border-radius: 5px;
+            overflow: hidden;
+            border-left: 4px solid var(--gold);
+            transition: var(--transition);
+        }
+
+        .input-group:focus-within {
+            box-shadow: 0 0 10px rgba(212, 165, 116, 0.4);
+            border-left-color: var(--gold-bright);
+        }
+
+        .input-group .icon {
+            padding: 12px 15px;
+            font-size: 1.2em;
+            color: var(--secondary-accent);
+        }
+
+        .input-group input {
+            flex: 1;
+            border: none;
+            padding: 12px 15px;
+            background-color: var(--bg-input);
+            color: var(--text-input);
+            font-size: 1em;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .input-group input::placeholder {
+            color: var(--text-placeholder);
+        }
+
+        .input-group input:focus {
+            background-color: #f0f0f0;
+        }
+
+        /* ===== OPCIONES (RECORDARME, OLVIDE CONTRASEÑA) ===== */
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            color: var(--text-gray);
+            cursor: pointer;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .remember:hover {
+            color: var(--gold);
+        }
+
+        .remember input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--gold);
+        }
+
+        .forgot-password {
+            color: var(--gold);
+            text-decoration: none;
+            font-style: italic;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .forgot-password:hover {
+            color: var(--gold-bright);
+            text-shadow: 0 0 10px rgba(212, 165, 116, 0.5);
+        }
+
+        /* ===== TÉRMINOS Y CONDICIONES ===== */
+        .terms {
+            margin: 10px 0;
+        }
+
+        .terms label {
+            display: flex;
+            align-items: center;
+            color: var(--text-gray);
+            cursor: pointer;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .terms label:hover {
+            color: var(--gold);
+        }
+
+        .terms input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--gold);
         }
 
         /* ===== BOTONES ===== */
@@ -253,6 +463,91 @@
             background: var(--gold);
             color: var(--primary-dark);
             transform: translateY(-2px);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #2d1f3d 0%, #3d2a4d 100%);
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #3d2a4d 0%, #4d3a5d 100%);
+            color: var(--gold-bright);
+            box-shadow: 0 0 20px rgba(212, 165, 116, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+            box-shadow: 0 0 10px rgba(212, 165, 116, 0.3);
+        }
+
+        /* ===== ENLACES DE AUTENTICACIÓN ===== */
+        .auth-link {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-dark);
+            color: var(--text-gray);
+            font-size: 0.9em;
+        }
+
+        .auth-link a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .auth-link a:hover {
+            color: var(--gold-bright);
+            text-shadow: 0 0 10px rgba(212, 165, 116, 0.5);
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.85em;
+        }
+
+        .back-link a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .back-link a:hover {
+            color: var(--gold);
+            text-shadow: 0 0 5px rgba(212, 165, 116, 0.3);
+        }
+
+        /* ===== NOTIFICACIONES ===== */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            animation: slideInRight 0.3s ease;
+            font-weight: bold;
+            max-width: 300px;
+            word-wrap: break-word;
+        }
+
+        .notification.error {
+            background: var(--error);
+        }
+
+        .notification.success {
+            background: var(--success);
         }
 
         /* ===== LISTAS ===== */
@@ -369,12 +664,38 @@
                 padding: 20px;
             }
 
+            .auth-box {
+                padding: 30px 20px;
+            }
+
+            .avatar {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 15px;
+            }
+
+            .auth-title {
+                font-size: 1.5em;
+            }
+
+            .options {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
             .cta-buttons {
                 flex-direction: column;
             }
 
             .features-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .notification {
+                max-width: 90vw;
+                right: 5vw;
+                left: auto;
+                width: auto;
             }
 
             .section-hero h2 {
@@ -413,10 +734,20 @@
                 padding: 15px;
                 margin-bottom: 20px;
             }
+
+            .auth-box {
+                padding: 25px 15px;
+            }
+
+            .input-group input {
+                padding: 10px 12px;
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- ===== HEADER Y NAVEGACIÓN ===== -->
     <header>
         <h1>CHIPAE</h1>
         <p class="tagline">Sistema de Gestión del Programa de Alimentación Escolar</p>
@@ -424,26 +755,27 @@
 
     <nav>
         <ul>
-            <li><a href="#inicio" class="nav-link">Inicio</a></li>
-            <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
-            <li><a href="login.html" class="nav-link">Login</a></li>
-            <li><a href="registro.html" class="nav-link">Registro</a></li>
+            <li><a onclick="showPage('inicio')" class="nav-link active">Inicio</a></li>
+            <li><a onclick="showPage('nosotros')" class="nav-link">Nosotros</a></li>
+            <li><a onclick="showPage('login')" class="nav-link">Login</a></li>
+            <li><a onclick="showPage('registro')" class="nav-link">Registro</a></li>
         </ul>
     </nav>
 
-    <main>
-        <section id="inicio" class="section-hero">
+    <!-- ===== PÁGINA INICIO ===== -->
+    <main id="main-content">
+        <section id="inicio" class="section-hero active">
             <div class="content-wrapper">
                 <h2>Bienvenido a CHIPAE</h2>
-                <p>CHIPAE es un sistema integral de gestión y registro digital para el Programa de Alimentación Escolar (PAE). Facilitamos la administración de almuerzos escolares y garantizamos que cada estudiante reciba una alimentación adecuada.</p>
+                <p>CHIPAE es un sistema integral de gestión y registro digital para el Programa de Alimentación Escolar (PAE). Facilitamos la administración de almuerzos escolares y garantizamos transparencia en cada paso del proceso.</p>
                 <div class="cta-buttons">
-                    <a href="login.html" class="btn btn-primary">Iniciar Sesión</a>
-                    <a href="registro.html" class="btn btn-secondary">Registrarse</a>
+                    <a onclick="showPage('login')" class="btn btn-primary">Iniciar Sesión</a>
+                    <a onclick="showPage('registro')" class="btn btn-secondary">Registrarse</a>
                 </div>
             </div>
         </section>
 
-        <section id="features" class="section-features">
+        <section id="features" class="section-features active">
             <h2>Características Principales</h2>
             <div class="features-grid">
                 <div class="feature-card">
@@ -465,53 +797,446 @@
             </div>
         </section>
 
-        <section id="info" class="section-info">
+        <section id="info" class="section-info active">
             <h2>¿Qué es el PAE?</h2>
-            <p>El Programa de Alimentación Escolar (PAE) es una iniciativa gubernamental que proporciona apoyo nutricional a estudiantes en situación de vulnerabilidad económica. Nuestro sistema facilita su gestión eficiente.</p>
+            <p>El Programa de Alimentación Escolar (PAE) es una iniciativa gubernamental que proporciona apoyo nutricional a estudiantes en situación de vulnerabilidad económica. Nuestro sistema permite gestionar de manera eficiente esta importante iniciativa.</p>
+        </section>
+
+        <!-- ===== PÁGINA NOSOTROS ===== -->
+        <section id="nosotros">
+            <h2>Sobre Nosotros</h2>
+            <p>CHIPAE es un proyecto integral dedicado a mejorar la gestión y el seguimiento del Programa de Alimentación Escolar (PAE). Nuestro equipo trabaja incansablemente para proporcionar soluciones tecnológicas que impacten positivamente en la vida de estudiantes y comunidades educativas.</p>
+        </section>
+
+        <section id="mision">
+            <h2>Nuestra Misión</h2>
+            <p>Facilitar el acceso a alimentos nutritivos y de calidad para estudiantes en situación de vulnerabilidad económica, mediante un sistema de registro eficiente y transparente que optimice la administración del Programa de Alimentación Escolar.</p>
+        </section>
+
+        <section id="objetivos">
+            <h2>Nuestros Objetivos</h2>
+            <ul class="objectives-list">
+                <li>Crear un registro digital completo de los almuerzos servidos en las instituciones educativas</li>
+                <li>Mejorar la eficiencia administrativa del PAE mediante tecnología moderna</li>
+                <li>Garantizar la transparencia en la gestión de recursos alimentarios</li>
+                <li>Facilitar el seguimiento y evaluación del programa a nivel nacional</li>
+            </ul>
+        </section>
+
+        <section id="equipo">
+            <h2>Equipo de Desarrollo</h2>
+            <p>Nuestro equipo está formado por profesionales comprometidos con el bienestar social y la innovación tecnológica. Trabajamos en conjunto para desarrollar soluciones que impacten positivamente en la educación y nutrición de nuestros estudiantes.</p>
+            <div class="back-link">
+                <a onclick="showPage('inicio')">← Volver al inicio</a>
+            </div>
         </section>
     </main>
 
-    <footer>
+    <!-- ===== SECCIONES DE AUTENTICACIÓN ===== -->
+    <div id="auth-content" style="display: none;">
+        <!-- LOGIN -->
+        <div id="login-section" class="auth-box">
+            <div class="avatar">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="50" fill="#5a3a6a"/>
+                    <circle cx="50" cy="35" r="15" fill="#e0e0e0"/>
+                    <path d="M 30 65 Q 30 50 50 50 Q 70 50 70 65 L 70 85 Q 70 85 50 85 Q 30 85 30 65" fill="#e0e0e0"/>
+                </svg>
+            </div>
+
+            <h2 class="auth-title">CHIPAE</h2>
+            <p class="auth-subtitle">Inicia sesión en tu cuenta</p>
+
+            <form id="loginForm" class="auth-form">
+                <div class="input-group">
+                    <span class="icon">👤</span>
+                    <input type="text" id="username-login" placeholder="Usuario" required>
+                </div>
+
+                <div class="input-group">
+                    <span class="icon">🔒</span>
+                    <input type="password" id="password-login" placeholder="Contraseña" required>
+                </div>
+
+                <div class="options">
+                    <label class="remember">
+                        <input type="checkbox" id="rememberMe">
+                        <span>Recuérdame</span>
+                    </label>
+                    <a class="forgot-password" title="Próximamente">¿Olvidaste tu contraseña?</a>
+                </div>
+
+                <button type="submit" class="btn btn-submit">INGRESAR</button>
+            </form>
+
+            <div class="auth-link">
+                <p>¿No tienes cuenta? <a onclick="showPage('registro')">Regístrate aquí</a></p>
+            </div>
+
+            <div class="back-link">
+                <a onclick="showPage('inicio')">← Volver al inicio</a>
+            </div>
+        </div>
+
+        <!-- REGISTRO -->
+        <div id="registro-section" class="auth-box">
+            <div class="avatar">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="50" fill="#5a3a6a"/>
+                    <circle cx="50" cy="35" r="15" fill="#e0e0e0"/>
+                    <path d="M 30 65 Q 30 50 50 50 Q 70 50 70 65 L 70 85 Q 70 85 50 85 Q 30 85 30 65" fill="#e0e0e0"/>
+                </svg>
+            </div>
+
+            <h2 class="auth-title">CHIPAE</h2>
+            <p class="auth-subtitle">Crea tu cuenta</p>
+
+            <form id="registerForm" class="auth-form">
+                <div class="input-group">
+                    <span class="icon">👤</span>
+                    <input type="text" id="username-register" placeholder="Usuario" minlength="3" required>
+                </div>
+
+                <div class="input-group">
+                    <span class="icon">📧</span>
+                    <input type="email" id="email-register" placeholder="Correo Electrónico" required>
+                </div>
+
+                <div class="input-group">
+                    <span class="icon">🔒</span>
+                    <input type="password" id="password-register" placeholder="Contraseña" minlength="6" required>
+                </div>
+
+                <div class="input-group">
+                    <span class="icon">🔒</span>
+                    <input type="password" id="confirmPassword-register" placeholder="Confirmar Contraseña" minlength="6" required>
+                </div>
+
+                <div class="terms">
+                    <label>
+                        <input type="checkbox" id="acceptTerms" required>
+                        <span>Acepto los términos y condiciones</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-submit">REGISTRARSE</button>
+            </form>
+
+            <div class="auth-link">
+                <p>¿Ya tienes cuenta? <a onclick="showPage('login')">Inicia sesión aquí</a></p>
+            </div>
+
+            <div class="back-link">
+                <a onclick="showPage('inicio')">← Volver al inicio</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="main-footer">
         <p>&copy; 2026 CHIPAE. Todos los derechos reservados.</p>
         <p class="footer-note">Sistema de gestión para educación superior</p>
     </footer>
 
     <script>
-        /* ===== MAIN.JS - Funciones globales ===== */
-
-        // Smooth scroll para enlaces de navegación
-        document.querySelectorAll('nav a[href^="#"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    
-                    // Actualizar clase active
-                    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-                    this.classList.add('active');
-                }
-            });
-        });
-
-        // Efecto de sombra en header al scroll
-        window.addEventListener('scroll', function() {
+        /* ===== SISTEMA DE NAVEGACIÓN ===== */
+        function showPage(page) {
+            const mainContent = document.getElementById('main-content');
+            const authContent = document.getElementById('auth-content');
             const header = document.querySelector('header');
-            if (header) {
-                if (window.scrollY > 0) {
-                    header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
-                } else {
-                    header.style.boxShadow = 'none';
-                }
+            const nav = document.querySelector('nav');
+            const footer = document.getElementById('main-footer');
+            const body = document.body;
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // Remover clase active de todos los links
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Ocultar todas las secciones
+            document.querySelectorAll('#main-content section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.auth-box').forEach(box => {
+                box.classList.remove('active');
+            });
+
+            // Mostrar página correspondiente
+            if (page === 'inicio') {
+                mainContent.style.display = 'block';
+                authContent.style.display = 'none';
+                header.style.display = 'block';
+                nav.style.display = 'block';
+                footer.style.display = 'block';
+                body.classList.remove('auth-page');
+                document.getElementById('inicio').classList.add('active');
+                document.getElementById('features').classList.add('active');
+                document.getElementById('info').classList.add('active');
+                navLinks[0].classList.add('active');
+                window.scrollTo(0, 0);
+            } 
+            else if (page === 'nosotros') {
+                mainContent.style.display = 'block';
+                authContent.style.display = 'none';
+                header.style.display = 'block';
+                nav.style.display = 'block';
+                footer.style.display = 'block';
+                body.classList.remove('auth-page');
+                document.getElementById('nosotros').classList.add('active');
+                document.getElementById('mision').classList.add('active');
+                document.getElementById('objetivos').classList.add('active');
+                document.getElementById('equipo').classList.add('active');
+                navLinks[1].classList.add('active');
+                window.scrollTo(0, 0);
+            } 
+            else if (page === 'login') {
+                mainContent.style.display = 'none';
+                authContent.style.display = 'flex';
+                header.style.display = 'none';
+                nav.style.display = 'none';
+                footer.style.display = 'none';
+                body.classList.add('auth-page');
+                document.getElementById('login-section').classList.add('active');
+                navLinks[2].classList.add('active');
+            } 
+            else if (page === 'registro') {
+                mainContent.style.display = 'none';
+                authContent.style.display = 'flex';
+                header.style.display = 'none';
+                nav.style.display = 'none';
+                footer.style.display = 'none';
+                body.classList.add('auth-page');
+                document.getElementById('registro-section').classList.add('active');
+                navLinks[3].classList.add('active');
+            }
+        }
+
+        /* ===== NOTIFICACIONES ===== */
+        const NotificationManager = {
+            show(message, type = 'error', duration = 4000) {
+                const notification = document.createElement('div');
+                notification.classList.add('notification', type);
+                notification.textContent = message;
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.remove();
+                }, duration);
+            },
+            error(message) { this.show(message, 'error'); },
+            success(message) { this.show(message, 'success'); }
+        };
+
+        /* ===== VALIDADOR ===== */
+        const AuthValidator = {
+            isValidUsername(username) {
+                return username.trim().length >= 3;
+            },
+            
+            isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            },
+            
+            isValidPassword(password) {
+                return password.trim().length >= 6;
+            }
+        };
+
+        /* ===== LOGIN HANDLER ===== */
+        const loginForm = document.getElementById('loginForm');
+        const usernameLoginInput = document.getElementById('username-login');
+        const passwordLoginInput = document.getElementById('password-login');
+        const rememberMeCheckbox = document.getElementById('rememberMe');
+
+        // Cargar datos guardados
+        window.addEventListener('load', function() {
+            const savedUsername = localStorage.getItem('savedUsername');
+            if (savedUsername && localStorage.getItem('rememberMe') === 'true') {
+                usernameLoginInput.value = savedUsername;
+                rememberMeCheckbox.checked = true;
             }
         });
 
-        console.log('CHIPAE - Sistema de Gestión PAE cargado');
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const username = usernameLoginInput.value.trim();
+            const password = passwordLoginInput.value.trim();
+
+            if (!username) {
+                NotificationManager.error('Por favor ingresa un usuario');
+                usernameLoginInput.focus();
+                return;
+            }
+
+            if (!password) {
+                NotificationManager.error('Por favor ingresa tu contraseña');
+                passwordLoginInput.focus();
+                return;
+            }
+
+            const registeredUser = localStorage.getItem('user_' + username);
+            if (!registeredUser) {
+                NotificationManager.error('El usuario no existe. Por favor regístrate primero.');
+                usernameLoginInput.focus();
+                return;
+            }
+
+            const userData = JSON.parse(registeredUser);
+            if (userData.password !== password) {
+                NotificationManager.error('Contraseña incorrecta. Intenta de nuevo.');
+                passwordLoginInput.focus();
+                return;
+            }
+
+            if (rememberMeCheckbox.checked) {
+                localStorage.setItem('savedUsername', username);
+                localStorage.setItem('rememberMe', 'true');
+            } else {
+                localStorage.removeItem('savedUsername');
+                localStorage.removeItem('rememberMe');
+            }
+
+            const now = new Date().toISOString();
+            localStorage.setItem('currentUser', username);
+            localStorage.setItem('employeeName', username);
+            localStorage.setItem('employeeRole', 'Empleado');
+            localStorage.setItem('loginTime', now);
+
+            NotificationManager.success(`¡Bienvenido ${username} a CHIPAE!`);
+
+            setTimeout(() => {
+                showPage('inicio');
+            }, 1500);
+        });
+
+        passwordLoginInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') loginForm.submit();
+        });
+
+        /* ===== REGISTRO HANDLER ===== */
+        const registerForm = document.getElementById('registerForm');
+        const usernameRegisterInput = document.getElementById('username-register');
+        const emailRegisterInput = document.getElementById('email-register');
+        const passwordRegisterInput = document.getElementById('password-register');
+        const confirmPasswordRegisterInput = document.getElementById('confirmPassword-register');
+        const acceptTermsCheckbox = document.getElementById('acceptTerms');
+
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const username = usernameRegisterInput.value.trim();
+            const email = emailRegisterInput.value.trim();
+            const password = passwordRegisterInput.value.trim();
+            const confirmPassword = confirmPasswordRegisterInput.value.trim();
+            const acceptTerms = acceptTermsCheckbox.checked;
+
+            if (!username) {
+                NotificationManager.error('Por favor ingresa un usuario');
+                usernameRegisterInput.focus();
+                return;
+            }
+
+            if (!AuthValidator.isValidUsername(username)) {
+                NotificationManager.error('El usuario debe tener al menos 3 caracteres');
+                usernameRegisterInput.focus();
+                return;
+            }
+
+            if (!email) {
+                NotificationManager.error('Por favor ingresa tu correo electrónico');
+                emailRegisterInput.focus();
+                return;
+            }
+
+            if (!AuthValidator.isValidEmail(email)) {
+                NotificationManager.error('Por favor ingresa un correo electrónico válido');
+                emailRegisterInput.focus();
+                return;
+            }
+
+            if (!password) {
+                NotificationManager.error('Por favor ingresa una contraseña');
+                passwordRegisterInput.focus();
+                return;
+            }
+
+            if (!AuthValidator.isValidPassword(password)) {
+                NotificationManager.error('La contraseña debe tener al menos 6 caracteres');
+                passwordRegisterInput.focus();
+                return;
+            }
+
+            if (!confirmPassword) {
+                NotificationManager.error('Por favor confirma tu contraseña');
+                confirmPasswordRegisterInput.focus();
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                NotificationManager.error('Las contraseñas no coinciden');
+                confirmPasswordRegisterInput.focus();
+                return;
+            }
+
+            if (!acceptTerms) {
+                NotificationManager.error('Debes aceptar los términos y condiciones');
+                acceptTermsCheckbox.focus();
+                return;
+            }
+
+            if (localStorage.getItem('user_' + username)) {
+                NotificationManager.error('Este usuario ya existe. Por favor elige otro nombre.');
+                usernameRegisterInput.focus();
+                return;
+            }
+
+            const user = {
+                username: username,
+                email: email,
+                password: password,
+                registeredDate: new Date().toISOString()
+            };
+
+            localStorage.setItem('user_' + username, JSON.stringify(user));
+
+            const now = new Date().toISOString();
+            localStorage.setItem('currentUser', username);
+            localStorage.setItem('employeeName', username);
+            localStorage.setItem('employeeRole', 'Empleado');
+            localStorage.setItem('loginTime', now);
+
+            NotificationManager.success('¡Bienvenido ' + username + ' a CHIPAE! Tu cuenta ha sido creada exitosamente.');
+
+            registerForm.reset();
+
+            setTimeout(() => {
+                showPage('inicio');
+            }, 1500);
+        });
+
+        // Validación en tiempo real de contraseñas
+        passwordRegisterInput.addEventListener('input', function() {
+            if (confirmPasswordRegisterInput.value && passwordRegisterInput.value !== confirmPasswordRegisterInput.value) {
+                confirmPasswordRegisterInput.style.borderColor = '#ff6b6b';
+            } else {
+                confirmPasswordRegisterInput.style.borderColor = '';
+            }
+        });
+
+        confirmPasswordRegisterInput.addEventListener('input', function() {
+            if (passwordRegisterInput.value && passwordRegisterInput.value !== confirmPasswordRegisterInput.value) {
+                confirmPasswordRegisterInput.style.borderColor = '#ff6b6b';
+            } else if (passwordRegisterInput.value === confirmPasswordRegisterInput.value) {
+                confirmPasswordRegisterInput.style.borderColor = '#d4a574';
+            }
+        });
+
+        confirmPasswordRegisterInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') registerForm.submit();
+        });
+
+        console.log('CHIPAE - Sistema de Gestión PAE cargado - Versión unificada');
     </script>
 </body>
 </html>
